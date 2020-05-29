@@ -2,6 +2,7 @@
 
 # 线性表的链式结构的实现python
 
+
 class Node(object):
 	# 节点类
 	def __init__(self, data, to=None):
@@ -42,7 +43,7 @@ class LinkList(object):
 	
 	def get_item(self, num):
 		# 获取元素数据
-		if num > 0 and num < self.length:
+		if 0 < num < self.length:
 			if num == 0:
 				return self.root.data
 			else:
@@ -53,7 +54,6 @@ class LinkList(object):
 					else:
 						temp = temp.to
 
-
 	def get_all(self):
 		# 获取所有元素
 		linklist = list()
@@ -63,7 +63,6 @@ class LinkList(object):
 			linklist.append(current_node.data)
 			current_node = current_node.to
 		print(linklist)
-
 
 	def insert_items(self, list, num):
 		# 插入数据
@@ -111,7 +110,6 @@ class LinkList(object):
 				else:
 					current_node = current_node.to
 
-
 	def delete_item(self, num):
 		# 单个删除
 		if num <= 0 or num > self.length:
@@ -120,14 +118,15 @@ class LinkList(object):
 
 		current_node = self.root
 		if num == 1:  # 删除头结点
+			print('要删除的是第1位的%s元素' % current_node.data)
 			self.root = current_node.to
-			self.length
+			self.length -= 1
 			del current_node
 			return 'ok'
 		else:
 			for i in range(2, self.length+1):
 				if num == i:
-					print('要删除的是第%d的%s元素' % (i,current_node.data))
+					print('要删除的是第%d位的%s元素' % (i,current_node.to.data))
 					q = current_node.to  # 当前要删除的节点
 					current_node.to = q.to	# 当前节点的后继改为下下个节点
 					self.length -= 1
@@ -137,7 +136,6 @@ class LinkList(object):
 					current_node = current_node.to
 
 
-
 if __name__ == '__main__':
 	l = ['a', 'b', 'c']
 	l2 = ['e', 'f', 'g']
@@ -145,7 +143,7 @@ if __name__ == '__main__':
 	linkli.create_list(l)
 	linkli.insert_items(l2, num=2)
 	linkli.get_all()
-	linkli.delete_item(3)
+	linkli.delete_item(6)
 	linkli.get_all()
 
 
